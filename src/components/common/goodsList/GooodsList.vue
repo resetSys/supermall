@@ -2,7 +2,7 @@
   <div class="goods-list">
     <div v-for="(item,index) in goods" :key="index" class="goods-list-item"
       @click="detail(item.id)">
-      <img v-lazy="item.img" :alt="item.title" @load="imgLoad">
+      <img v-lazy="item.imgsrc" :alt="item.title" @load="imgLoad">
       <p>{{item.title}}</p>
       <p>价格:{{item.price}}</p>
     </div>
@@ -32,13 +32,13 @@ export default {
    },
    detail(id){
     // window.console.log(this.$router)
-    window.console.log(id)
+    // window.console.log(id)
     this.$router.push({
       path:"/detail",
       query:{
         id:id
       }
-      })
+    })
    }
   }
 }

@@ -32,8 +32,8 @@ export default {
       'toggleCheckAll'
     ]),
     closeAcc(){
-      this.$toast.methods.show("结算商品",2000)
-      window.console.log("结算")
+      this.$toast.methods.show("结算商品",2000);
+      window.console.log("结算");
     }
   }
 }

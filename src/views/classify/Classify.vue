@@ -1,140 +1,161 @@
 <template>
   <div class="warpper">
-    <ul>
-      <li>列表1</li>
-      <li>列表2</li>
-      <li>列表3</li>
-      <li>列表4</li>
-      <li>列表5</li>
-      <li>列表6</li>
-      <li>列表7</li>
-      <li>列表8</li>
-      <li>列表9</li>
-      <li>列表10</li>
-      <li>列表11</li>
-      <li>列表12</li>
-      <li>列表13</li>
-      <li>列表14</li>
-      <li>列表15</li>
-      <li>列表16</li>
-      <li>列表17</li>
-      <li>列表18</li>
-      <li>列表19</li>
-      <li>列表20</li>
-      <li>列表21</li>
-      <li>列表22</li>
-      <li>列表23</li>
-      <li>列表24</li>
-      <li>列表25</li>
-      <li>列表26</li>
-      <li>列表27</li>
-      <li>列表28</li>
-      <li>列表29</li>
-      <li>列表30</li>
-      <li>列表31</li>
-      <li>列表32</li>
-      <li>列表33</li>
-      <li>列表34</li>
-      <li>列表35</li>
-      <li>列表36</li>
-      <li>列表37</li>
-      <li>列表38</li>
-      <li>列表39</li>
-      <li>列表40</li>
-      <li>列表41</li>
-      <li>列表42</li>
-      <li>列表43</li>
-      <li>列表44</li>
-      <li>列表45</li>
-      <li>列表46</li>
-      <li>列表47</li>
-      <li>列表48</li>
-      <li>列表49</li>
-      <li>列表50</li>
-      <li>列表51</li>
-      <li>列表52</li>
-      <li>列表53</li>
-      <li>列表54</li>
-      <li>列表55</li>
-      <li>列表56</li>
-      <li>列表57</li>
-      <li>列表58</li>
-      <li>列表59</li>
-      <li>列表60</li>
-      <li>列表61</li>
-      <li>列表62</li>
-      <li>列表63</li>
-      <li>列表64</li>
-      <li>列表65</li>
-      <li>列表66</li>
-      <li>列表67</li>
-      <li>列表68</li>
-      <li>列表69</li>
-      <li>列表70</li>
-      <li>列表71</li>
-      <li>列表72</li>
-      <li>列表73</li>
-      <li>列表74</li>
-      <li>列表75</li>
-      <li>列表76</li>
-      <li>列表77</li>
-      <li>列表78</li>
-      <li>列表79</li>
-      <li>列表80</li>
-      <li>列表81</li>
-      <li>列表82</li>
-      <li>列表83</li>
-      <li>列表84</li>
-      <li>列表85</li>
-      <li>列表86</li>
-      <li>列表87</li>
-      <li>列表88</li>
-      <li>列表89</li>
-      <li>列表90</li>
-      <li>列表91</li>
-      <li>列表92</li>
-      <li>列表93</li>
-      <li>列表94</li>
-      <li>列表95</li>
-      <li>列表96</li>
-      <li>列表97</li>
-      <li>列表98</li>
-      <li>列表99</li>
-      <li>列表100</li>
-    </ul>
+    <nav-bar>
+      <span slot="center">分类</span>
+    </nav-bar>
+    <div class="container">
+      <div class="con-nav">
+        <ul>
+          <li v-for="(item,index) in navList" :class="{'con-nav-active':index==currNav}"
+            @click="handleNav(index,item.id)" :key="index">{{item.title}}</li>
+        </ul>
+      </div>
+      <div class="con-list">
+        <div class="con-list-container">
+          <div class="con-li-it">
+            <p class="CLI-tit">猜你喜欢</p>
+            <div class="CLI-item">
+              <div class="CLI-it-it" v-for="(item,index) in classList" :key="index">
+                <img :src="item.imgsrc" :alt="item.title">
+                <p>{{item.title}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import BScroll from "better-scroll"
-
+//组件
+import BScroll from "better-scroll";
+import navBar from "components/common/navbar/NavBar";
+//网络
+import {request} from "@/network/request";
 export default {
   name: 'classify',
   data() {
     return {
       bs:null,
+      currNav:0,//记录当前nav
+      navList:[],//存储分类
+      classList:[],//存储分类下数据
     }
   },
   components: {
-
+    navBar,
   },
   mounted(){
-    let bscroll=new BScroll(".warpper",{
+    new BScroll(".con-nav",{
       //参数选型，可添加参数
       probeType:2
     });
-    bscroll.on("scroll",(position)=>{
-      window.console.log(position);
-    })
+    // bscroll.on("scroll",(position)=>{
+    //   window.console.log(position);
+    // });
+    new BScroll(".con-list",{
+      //参数选型，可添加参数
+      probeType:2
+    });
+    this.getNav();//获取分类
+    this.getClassList(1);//获取分类下的数据
   },
+  methods:{
+    /**点击nav */
+    handleNav(index,id){
+      this.currNav = index;
+      this.getClassList(id);
+    },
+    /**获取一级导航 */
+    getNav(){
+      request({
+        url:"/get_classify.php",
+        method:"get",
+      }).then((res) => {
+        window.console.log(res);
+        this.navList = res.data;
+      }).catch((err) => {
+        window.console.log(err);
+      });
+    },
+    /**获取分类下的数据 */
+    getClassList(id){
+      request({
+        url:"/get_classList.php",
+        method:"post",
+        data:{
+          id:id
+        }
+      }).then((res) => {
+        window.console.log(res);
+        this.classList = res.data;
+      }).catch((err) => {
+        window.console.log(err);
+      });
+    },
+  },
+
 }
 </script>
 
 <style scoped>
 .warpper{
   width: 100%;
-  height: 100px;
-  background-color: beige;
+}
+.container{
+  width: 100%;
+  height: calc(100vh - 96px);
+  background-color: #dcdcdc;
   overflow: hidden;
+  display: flex;
+}
+.con-nav{
+  width: 25%;
+  background-color: #fff;
+  overflow: hidden;
+}
+.con-nav>ul>li{
+  text-align: center;
+  padding: 10px 2px;
+  box-sizing: border-box;
+  
+}
+.con-nav-active{
+  color: #d81e06;
+  background-color: #dcdcdc;
+}
+/* 分类具体项 */
+.con-list{
+  width: 75%;
+  background-color: #dcdcdc;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100%;
+}
+.CLI-tit{
+  padding: 3px 0;
+}
+.CLI-item{
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+.CLI-it-it{
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.CLI-it-it>img{
+  height: 40px;
+}
+.CLI-it-it>p{
+  font-size: 12px;
 }
 </style>

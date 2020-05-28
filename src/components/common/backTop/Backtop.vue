@@ -1,6 +1,6 @@
 <template>
   <div class="backtop">
-    <img src="../../../assets/images/backtop/backtop.png" alt="">
+    <img src="../../../assets/images/backtop/backtop.png" alt="返回顶部">
   </div>
 </template>
 

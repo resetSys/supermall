@@ -16,8 +16,7 @@ export default {
   methods:{
     show(message,time){
       this.msg = message
-      this.isShow = true
-      window.console.log(message,time,this.isShow)
+      this.isShow = true;
       setTimeout(() => {
         this.isShow = false
         this.msg = ""

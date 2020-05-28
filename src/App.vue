@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <keep-alive exclude="detailNavBar">
+    <!-- <keep-alive exclude="detailNavBar,detail">
       <router-view/>
-    </keep-alive>
+    </keep-alive> -->
+    <router-view/>
     <tabbar>
         <tabbar-item path="/home">
           <img slot="tabbar-img" src="~assets/images/tabbar/classify.png" alt="">
