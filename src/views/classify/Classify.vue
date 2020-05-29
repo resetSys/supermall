@@ -106,7 +106,7 @@ export default {
 .container{
   width: 100%;
   height: calc(100vh - 96px);
-  background-color: #dcdcdc;
+  background-color: #F8F8FF;
   overflow: hidden;
   display: flex;
 }
@@ -123,12 +123,12 @@ export default {
 }
 .con-nav-active{
   color: #d81e06;
-  background-color: #dcdcdc;
+  background-color: #F8F8FF;
 }
 /* 分类具体项 */
 .con-list{
   width: 75%;
-  background-color: #dcdcdc;
+  background-color: #F8F8FF;
   padding: 10px;
   box-sizing: border-box;
   height: 100%;

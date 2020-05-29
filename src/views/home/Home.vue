@@ -3,7 +3,10 @@
     <nav-bar>
       <img src="~assets/images/navbr/scan.png" alt="扫一扫" slot="left">
       <span slot="center">首页</span>
-      <img src="~assets/images/navbr/search.png" alt="搜索" slot="right">
+      <router-link to="/search" slot="right">
+        <img style="height:20px" src="~assets/images/navbr/search.png" alt="搜索">
+      </router-link>
+      
     </nav-bar>
     <tab-control class="fixed" ref="tabControl2" :titles="titles" @tabClick="tabClick"
       v-show="tabControlShow"/>

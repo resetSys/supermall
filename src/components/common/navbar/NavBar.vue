@@ -31,7 +31,7 @@ export default {
 .left,.rigth{
   width: 60px;
 }
-.left>img,.rigth>img{
+.left img,.rigth img{
   height: 20px;
   width: auto;
 }

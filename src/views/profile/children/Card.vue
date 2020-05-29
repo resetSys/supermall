@@ -9,7 +9,7 @@
       </slot>
     </div>
     <slot name="img">
-      <img src="../../../assets/images/profile/profile.png" alt="会员中心">
+      <img src="~assets/images/profile/profile.png" alt="会员中心">
     </slot>
   </div>
 </template>
@@ -47,8 +47,8 @@ export default {
   color: #ff9c00;
 }
 .MCC-item>img{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: auto;
   margin-right: 10px;
 }
 </style>

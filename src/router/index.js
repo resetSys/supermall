@@ -6,6 +6,7 @@ const Classify = () => import("views/classify/Classify")
 const Shopcar = () => import("views/shop/Shopcar")
 const Profile = () => import("views/profile/Profile")
 const Detail = () => import("views/detail/Detail.vue")
+const Search = () => import("views/search/Search.vue")
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,9 @@ const routes = [{
 },{
   path:"/detail",
   component:Detail
+},{
+  path:"/search",
+  component:Search
 }]
 
 const router = new VueRouter({

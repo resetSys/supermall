@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <!-- <keep-alive exclude="detailNavBar,detail">
+    <keep-alive exclude="detail,search">
       <router-view/>
-    </keep-alive> -->
-    <router-view/>
+    </keep-alive>
     <tabbar>
         <tabbar-item path="/home">
           <img slot="tabbar-img" src="~assets/images/tabbar/classify.png" alt="">
@@ -33,8 +32,8 @@
 </template>
 
 <script>
-import tabbar from "components/common/tabbar/Tabbar"
-import tabbarItem from "components/common/tabbar/TabbarItem"
+import tabbar from "components/common/tabbar/Tabbar";
+import tabbarItem from "components/common/tabbar/TabbarItem";
 
 export default {
   name: 'app',
