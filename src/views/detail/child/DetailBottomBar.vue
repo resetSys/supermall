@@ -1,9 +1,19 @@
 <template>
   <div class="detailBottomBar">
     <div class="left">
-      <span>客服</span>
-      <span>店铺</span>
-      <span>收藏</span>
+      <div>
+        <img src="~assets/images/detail/shop.png" alt="店铺">
+        <span>店铺</span>
+      </div>
+      <div @click="handleFavori">
+        <img v-if="favori" src="~assets/images/detail/favori_active.png" alt="收藏">
+        <img v-else src="~assets/images/detail/favori.png" alt="收藏">
+        <span>收藏</span>
+      </div>
+      <div>
+        <img src="~assets/images/detail/chat.png" alt="客服">
+        <span>客服</span>
+      </div>
     </div>
     <div class="right">
       <div class="addShop" @click="addCart">加入购物车</div>
@@ -17,13 +27,22 @@ export default {
   name: 'detailBottomBar',
   data() {
     return {
-
+      favori:false,
     }
   },
   methods:{
     addCart(){
       this.$emit("addCart");
-    }
+    },
+    /**点击收藏 */
+    handleFavori(){
+      this.favori = !this.favori;
+      if (this.favori) {
+        this.$toast.show("已收藏",1000);
+      } else {
+        this.$toast.show("已取消",1000);
+      }
+    },
   }
 }
 </script>
@@ -42,10 +61,17 @@ export default {
   flex-grow: 3;
   display: flex;
 }
-.left>span{
-  flex-grow:1; 
-  text-align: center;
-  line-height: 50px;
+.left>div{
+  flex-grow:1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+}
+.left>div>img{
+  height: 20px;
+  width: auto;
 }
 .right{
   flex-grow: 2;

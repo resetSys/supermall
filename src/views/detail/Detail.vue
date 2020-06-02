@@ -51,7 +51,7 @@ export default {
     },
     addCart(){//添加到购物车
       this.$store.commit('addCart',this.goods);
-      this.$toast.methods.show('添加成功',500);
+      this.$toast.show('添加成功',1000);
     },
     //获取该商品数据
     getGoods(){

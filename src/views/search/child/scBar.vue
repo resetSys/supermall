@@ -2,7 +2,9 @@
   <div class="sc-bar">
     <span class="sc-bar-back" @click="back"></span>
     <input v-model="seValue" class="sc-bar-inp" type="text" placeholder="请输入要搜索的内容">
-    <span class="sc-bar-btn" @click="handelSearch">搜索</span>
+    <span class="sc-bar-btn" @click="handelSearch">
+      <router-link @click="event.preventDefault()" to="/result">搜索</router-link>
+    </span>
   </div>
 </template>
 
@@ -27,6 +29,9 @@ export default {
     },
     /**存入记录 */
     setStroage(){
+      if (this.seValue == '') {
+        return;
+      }
       let record = localStorage.getItem('record');
       if (record != null) {
         localStorage.setItem('record',record+","+this.seValue);
@@ -81,6 +86,7 @@ export default {
   background-color: #EEB422;
   color: #fff;
   box-shadow: 0 0 4px #dcdcdc;
+  cursor: pointer;
 }
 
 </style>

@@ -15,11 +15,11 @@ export default {
   },
   methods:{
     show(message,time){
-      this.msg = message
+      this.msg = message;
       this.isShow = true;
       setTimeout(() => {
         this.isShow = false
-        this.msg = ""
+        this.msg = "";
       }, time);
     }
   }

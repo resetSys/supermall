@@ -1,4 +1,5 @@
-# supermall
+
+# supermall 模仿购物街的一个手机端单页面应用
 
 ## Project setup
 ```

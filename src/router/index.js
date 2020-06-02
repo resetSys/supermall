@@ -7,6 +7,7 @@ const Shopcar = () => import("views/shop/Shopcar")
 const Profile = () => import("views/profile/Profile")
 const Detail = () => import("views/detail/Detail.vue")
 const Search = () => import("views/search/Search.vue")
+const Result = () => import("views/result/Result.vue")
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,9 @@ const routes = [{
 },{
   path:"/search",
   component:Search
+},{
+  path:"/result",
+  component:Result
 }]
 
 const router = new VueRouter({
